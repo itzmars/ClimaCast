@@ -1,6 +1,8 @@
+import 'package:clima_cast/screens/location_screen.dart';
 import 'package:clima_cast/services/location.dart';
 import 'package:flutter/material.dart';
 import '../services/networking.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const APIKEY = "1d8421344d08bdf8206821b040d5de7e";
 
@@ -15,10 +17,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   late double latitude;
   late double longitude;
 
+  late String description;
+
   @override
   void initState() {
     super.initState();
-
     getLocationData();
   }
 
@@ -34,14 +37,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
     NetworkHelper networkHelper = NetworkHelper(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$APIKEY');
     var weatherData = await networkHelper.getData();
-    var description = weatherData['weather'][0]['description'];
-    print(description);
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      var description = weatherData['weather'][0]['description'];
+      return LocationScreen(description: description,);
+    }));
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Hello, world")),
+    return Scaffold(
+      body: Center(child: SpinKitDoubleBounce(color: Color(0xffffffff),
+      duration: Duration(seconds: 2),)),
     );
   }
 }
