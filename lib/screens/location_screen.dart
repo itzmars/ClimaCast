@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/weather_icon.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({super.key, required this.locationWeather});
@@ -10,16 +11,30 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationScreenState extends State<LocationScreen> {
   @override
+  late int temperature;
+  late String description;
+  late String weather;
+  late String stringWeatherIcon;
+  late String icon;
+
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print(widget.locationWeather['weather'][0]['description']);
+    convertWeather(widget.locationWeather);
+  }
+
+  void convertWeather(dynamic location) {
+    double temp = location['main']['temp'];
+    temperature = temp.toInt();
+    stringWeatherIcon = location['weather'][0]['icon'];
+    
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('hello, world'),
+      child: Center(
+          child: Column(children: [WeatherIcon(weatherCondition: stringWeatherIcon), Text(temperature.toString(),)],)),
     );
   }
 }
