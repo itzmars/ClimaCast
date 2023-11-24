@@ -24,6 +24,6 @@ class WeatherIcon extends StatelessWidget {
         iconData = WeatherIcons.na;
     }
 
-    return Icon(iconData);
+    return Icon(iconData, size: 100,);
   }
 }
