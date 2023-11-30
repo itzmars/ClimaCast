@@ -17,6 +17,7 @@ class _LocationScreenState extends State<LocationScreen> {
   late String stringWeatherIcon;
   late String icon;
   late String country;
+  late String humidy;
 
   @override
   void initState() {
@@ -25,6 +26,7 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void convertWeather(dynamic location) {
+    print(location);
     setState(() {
       double temp = location['main']['temp'];
       country = location['sys']['country'];
@@ -48,11 +50,14 @@ class _LocationScreenState extends State<LocationScreen> {
               style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
             ),
             WeatherIcon(weatherCondition: stringWeatherIcon),
-            Text(temperature.toString(), style: const TextStyle(fontSize: 20.0),),
+            Expanded(child:  SizedBox(width: 0,)),
+            Text(temperature.toString()),
+          
             Text(
               description,
               style: const TextStyle(fontSize: 28.0),
             ),
+            Expanded(child:  SizedBox(width: 3.0,)),
             const Expanded(
                 child: Column(
               children: [
@@ -62,10 +67,20 @@ class _LocationScreenState extends State<LocationScreen> {
                     Expanded(
                         child: UsableCard(
                       color: Color(0xff1d1e33),
+                      childCard: Column(
+                        children: [
+                          Text("Humidity"),
+                        ],
+                      ),
                     )),
                     Expanded(
                         child: UsableCard(
                       color: Color(0xff1d1e33),
+                      childCard: Column(
+                        children: [
+                          Text("Wind"),
+                        ],
+                      ),
                     ))
                   ],
                 )),
@@ -75,10 +90,20 @@ class _LocationScreenState extends State<LocationScreen> {
                     Expanded(
                         child: UsableCard(
                       color: Color(0xff1d1e33),
+                       childCard: Column(
+                        children: [
+                          Text("Visibility"),
+                        ],
+                      ),
                     )),
                     Expanded(
                         child: UsableCard(
                       color: Color(0xff1d1e33),
+                       childCard: Column(
+                        children: [
+                          Text("Pressure"),
+                        ],
+                      ),
                     ))
                   ],
                 ))
