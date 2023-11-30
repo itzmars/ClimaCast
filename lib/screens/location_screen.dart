@@ -43,23 +43,21 @@ class _LocationScreenState extends State<LocationScreen> {
           title: const Text("ClimaCast"),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               country,
               style: const TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
             ),
-            WeatherIcon(weatherCondition: stringWeatherIcon),
-            Expanded(child:  SizedBox(width: 0,)),
-            Text(temperature.toString()),
-          
+            Expanded(child: WeatherIcon(weatherCondition: stringWeatherIcon)),
+            Text(temperature.toString(), style: const TextStyle( fontSize: 30.0, fontWeight: FontWeight.bold),),
             Text(
               description,
               style: const TextStyle(fontSize: 28.0),
             ),
-            Expanded(child:  SizedBox(width: 3.0,)),
+            Expanded(child: SizedBox(height: 0.5,)),
             const Expanded(
                 child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
                     child: Row(
@@ -90,7 +88,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     Expanded(
                         child: UsableCard(
                       color: Color(0xff1d1e33),
-                       childCard: Column(
+                      childCard: Column(
                         children: [
                           Text("Visibility"),
                         ],
@@ -99,7 +97,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     Expanded(
                         child: UsableCard(
                       color: Color(0xff1d1e33),
-                       childCard: Column(
+                      childCard: Column(
                         children: [
                           Text("Pressure"),
                         ],

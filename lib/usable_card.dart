@@ -10,6 +10,7 @@ class UsableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10.0),
+      height: 100.0,
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(8)),
       child: childCard,
